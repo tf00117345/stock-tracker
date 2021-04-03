@@ -1,0 +1,23 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+requests = "*"
+scrapy = "*"
+pandas = "*"
+SQLObject = "*"
+html5lib = "*"
+BeautifulSoup4 = "*"
+scrapyd = "*"
+scrapyd-client = "*"
+psycopg2-binary = "*"
+
+[dev-packages]
+pytest = "*"
+pylint = "*"
+autopep8 = "*"
+
+[requires]
+python_version = "3.9"
