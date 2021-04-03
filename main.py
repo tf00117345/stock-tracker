@@ -1,16 +1,35 @@
-# This is a sample Python script.
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+import sqlalchemy
+from sqlalchemy import Table, Column, Integer, String, ForeignKey
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+def connect(user, password, db, host='localhost', port=5432):
+    '''Returns a connection and a metadata object'''
+    # We connect with the help of the PostgreSQL URL
+    # postgresql://federer:grandestslam@localhost:5432/tennis
+    url = 'postgresql://{}:{}@{}:{}/{}'
+    url = url.format(user, password, host, port, db)
+
+    # The return value of create_engine() is our connection object
+    print(url)
+    con = sqlalchemy.create_engine(url, client_encoding='utf8')
+    meta = sqlalchemy.MetaData(bind=con)
+
+    return con, meta
 
 
 # Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+con, meta = connect('postgres', 'admin', 'stock')
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+slams = Table('slams', meta,
+              Column('name', String, primary_key=True),
+              Column('country', String)
+              )
+
+results = Table('results', meta,
+                Column('slam', String, ForeignKey('slams.name')),
+                Column('year', Integer),
+                Column('result', String)
+                )
+
+# Create the above tables
+meta.create_all(con)

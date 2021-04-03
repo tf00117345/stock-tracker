@@ -13,6 +13,7 @@ BeautifulSoup4 = "*"
 scrapyd = "*"
 scrapyd-client = "*"
 psycopg2-binary = "*"
+sqlalchemy = "*"
 
 [dev-packages]
 pytest = "*"
