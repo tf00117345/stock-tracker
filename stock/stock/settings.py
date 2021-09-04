@@ -87,7 +87,7 @@ ROBOTSTXT_OBEY = True
 # HTTPCACHE_IGNORE_HTTP_CODES = []
 # HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
 
-# LOG_FILE = "stock_log.txt"
+LOG_FILE = "stock_log.txt"
 LOG_LEVEL = "ERROR"
 
 CONNECTION_STRING = "{drivername}://{user}:{passwd}@{host}:{port}/{db_name}".format(
